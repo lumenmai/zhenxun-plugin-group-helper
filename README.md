@@ -13,22 +13,28 @@
 
 ## 安装
 
-在真寻项目根目录执行：
+可以直接将插件目录放入真寻的 `zhenxun/plugins/`，安装依赖后重启，**不需要配置 `EXT_PATH`**。
+
+下载本仓库后，将其中的 `group_helper/` 文件夹复制到 `zhenxun/plugins/`。复制的是插件文件夹，不是整个仓库，最终结构应为：
+
+```text
+zhenxun/
+└── plugins/
+    └── group_helper/
+        └── __init__.py
+```
+
+也可以在真寻项目根目录执行以下命令，仓库会克隆到真寻项目的同级目录：
 
 ```bash
-git clone https://github.com/lumenmai/zhenxun-plugin-group-helper.git external_plugins/group_helper
-uv pip install -r external_plugins/group_helper/requirements.txt
+git clone https://github.com/lumenmai/zhenxun-plugin-group-helper.git ../zhenxun-plugin-group-helper
+uv pip install -r ../zhenxun-plugin-group-helper/requirements.txt
+cp -R ../zhenxun-plugin-group-helper/group_helper zhenxun/plugins/
 ```
 
-在实际使用的环境配置文件中，将仓库目录追加到 `EXT_PATH`：
+依赖应安装到运行真寻的虚拟环境中。完成后重启真寻，检查“群聊管理”是否加载成功。
 
-```dotenv
-EXT_PATH=["external_plugins/group_helper"]
-```
-
-已有其他外部路径时请保留并追加，之后重启真寻。
-
-也可以将仓库中的 `group_helper/` 文件夹复制到 `zhenxun/plugins/`，安装依赖后重启。已有同名插件时，只保留一种加载方式，避免重复加载。
+如果已有同名插件，先备份旧目录，再用新的插件目录替换，保留原有运行数据；同一插件只保留一种加载方式，避免重复加载。
 
 ## 命令
 
